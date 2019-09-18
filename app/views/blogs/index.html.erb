@@ -1,2 +1,29 @@
-<h1>Blogs#index</h1>
-<p>Find me in app/views/blogs/index.html.erb</p>
+<h1>ナオヤブログ</h1>
+<h2><%= link_to '新規投稿', new_blog_path, class: "btn btn-dark" %></h2>
+<% if flash[:notice] %>
+<div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+<table class="table table-hover boards__table">
+  <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>作成者</th>
+      <th>作成日時</th>
+      <th>更新日時</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+          <td><%= blog.id %></td>
+          <td><%= link_to blog.title, blog %></td>
+          <td><%= blog.name %></td>
+          <td><%= blog.created_at.to_s(:datetime_jp)%></td>
+          <td><%= blog.updated_at.to_s(:datetime_jp) %></td>
+          <td><%= link_to '削除', blog, class: "btn btn-outline-dark", method: :delete, data: { confirm: '削除しますか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
