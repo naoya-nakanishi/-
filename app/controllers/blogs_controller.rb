@@ -1,10 +1,11 @@
 class BlogsController < ApplicationController
-  before_action :set_target_blog, only: %i[show edit update destroy]
+  before_action :set_target_blog, only: %i(show edit update destroy)
   def index
     @blogs = Blog.all
   end
 
   def show
+    @comment = Comment.new(blog_id: @blog.id)
   end
 
   def new
