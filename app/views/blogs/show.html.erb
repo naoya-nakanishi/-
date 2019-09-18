@@ -9,15 +9,8 @@
 <div class="alert alert-primary"><%= flash[:notice] %></div>
 <% end %>
 
-<div class="card">
-  <div class="card-header">
-    <h4><%= @blog.title %></h4>
-  </div>
-  <div class="card-body">
-    <p class="card-text"><%= simple_format(@blog.body) %></p>
-    <p class="text-right font-weight-bold mr-10"><%= @blog.name %></p>
-  </div>
-</div>
+<%= render @blog %>
+<%# render partial: "blog", object: @blog  %>
 
 <div class="p-comment__list">
   <div class="p-comment_listTitle">コメント</div>
@@ -27,18 +20,4 @@
 </div>
 
 
-<div class="p-comment__formBox">
-  <p class="p-comment__formTitle">コメント記入</p>
-  <%= form_with model:@comment do |f| %>
-    <%= f.hidden_field :blog_id %>
-    <div class="form-group">
-      <%= f.label :name, '名前' %>
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :comment, 'コメント' %>
-      <%= f.text_area :comment, class: 'form-control', rows: 4 %>
-    </div>
-    <%= f.submit '送信', class: 'btn btn-primary' %>
-  <% end %>
-</div>
+<%= render partial: "comments/form", locals: {comment: @comment} %>
