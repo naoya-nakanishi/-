@@ -1,5 +1,18 @@
-<h1>ナオヤブログ</h1>
-<h2><%= link_to '新規投稿', new_blog_path, class: "btn btn-dark" %></h2>
+<div class="d-flex">
+  <h2 class="justify-content-between"><%= link_to '新規投稿', new_blog_path, class: "btn btn-dark" %></h2>
+  <div class="ml-auto blogs__linkBox justify-content-between">
+    <%= form_with url: blogs_path, method: :get, class: "blogs__searchForm" do %>
+      <%= select_tag :tag_id,
+                      options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                      {
+                        prompt: 'タグで絞り込み',
+                        class: 'form-control blogs__select',
+                        onchange: 'submit(this.form);'
+                      }
+      %>
+    <% end %>
+  </div>
+</div>
 <% if flash[:notice] %>
 <div class="alert alert-success"><%= flash[:notice] %></div>
 <% end %>

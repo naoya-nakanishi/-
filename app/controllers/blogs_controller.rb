@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_target_blog, only: %i(show edit update destroy)
   def index
-    @blogs = Blog.all
+    @blogs = params[:tag_id].present? ? Tag.find(params[:tag_id]).blogs : Blog.all
   end
 
   def show
@@ -47,7 +47,7 @@ class BlogsController < ApplicationController
 
   private
   def blog_params
-    params.require(:blog).permit(:name, :title, :body)
+    params.require(:blog).permit(:name, :title, :body, tag_ids:[])
   end
 
   def set_target_blog

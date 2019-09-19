@@ -9,3 +9,12 @@
 (1..15).each do |i|
   Blog.create(name: "ユーザ#{i}",  title: "タイトル#{i}", body: "本文#{i}")
 end
+
+Tag.create([
+
+  {name: "Programming"},
+  {name: "RUby"},
+  {name: "Ruby on Rails"},
+  {name: "旅行"}
+
+])

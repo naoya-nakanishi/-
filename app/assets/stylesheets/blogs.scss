@@ -3,6 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.link{
-  display:block;
+.blogs__linkBox {
+  a {
+    margin: 0 8px;
+  }
+}
+
+
+.blogs__searchForm {
+  display: inline-block;
+  float: right;
+}
+
+.blogs__select {
+  display: inline-block;
+  width: auto;
 }

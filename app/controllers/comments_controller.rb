@@ -4,6 +4,10 @@ class CommentsController < ApplicationController
     if comment.save
       flash[:notice] = "コメントを投稿しました。"
       redirect_to comment.blog
+    else
+      flash[:comment] = comment
+      flash[:error_messages] = comment.errors.full_messages
+      redirect_back fallback_location: comment.blog
     end
   end
 
